@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<Bloco-XML-Scene>
+    <GlobalTimeSettings Mode="24 fps">
+        <Start Format="Seconds">0.0416667</Start>
+        <End Format="Seconds">2</End>
+    </GlobalTimeSettings>
+    <GlobalLightSettings>
+        <AmbientColor>0 0 0 1 </AmbientColor>
+    </GlobalLightSettings>
+    <GlobalCameraSettings>
+        <DefaultCamera>Producer Perspective</DefaultCamera>
+    </GlobalCameraSettings>
+    <MeshNode Name="pPlane1">
+        <GlobalMatrix>1 0 0 0 0 1 0 0 0 0 -1 0 0 0 0 1 </GlobalMatrix>
+        <Geometry>
+            <VertexBuffer Size="6">
+                <Position>50 -1.11022e-014 50 50 1.11022e-014 -50 -50 -1.11022e-014 50 -50 -1.11022e-014 50 50 1.11022e-014 -50 -50 1.11022e-014 -50 </Position>
+                <TexCoord>1 1 1 0 0 1 0 1 1 0 0 0 </TexCoord>
+            </VertexBuffer>
+        </Geometry>
+        <Bones Size="0" />
+        <Animation Size="0" />
+        <Materials Size="1">
+            <Material Name="phong1" Type="Phong" ShadingModel="phong" HasTexture="false">
+                <Phong>
+                    <Ambient>0 0 0 1 </Ambient>
+                    <Diffuse>0.5 0.5 0.5 1 </Diffuse>
+                    <Specular>0.5 0.5 0.5 1 </Specular>
+                    <Emissive>0 0 0 1 </Emissive>
+                    <Transparency>0</Transparency>
+                    <Shininess>20</Shininess>
+                    <Reflectivity>0.5</Reflectivity>
+                </Phong>
+            </Material>
+        </Materials>
+        <Textures Size="0" />
+        <Material-Connections Size="1">
+            <MaterialGroup MaterialName="phong1" MaterialIndex="0">
+                <InfluencedPolygons Size="6">0 1 2 3 4 5 </InfluencedPolygons>
+            </MaterialGroup>
+        </Material-Connections>
+    </MeshNode>
+</Bloco-XML-Scene>

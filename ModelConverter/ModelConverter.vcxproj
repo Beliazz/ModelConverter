@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{944578DA-3F8E-4943-AFBA-C5FAB86D51D4}</ProjectGuid>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>ModelConverter</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Mathias\Documents\GitHub\ModelConverter\ModelConverter\3dParty\TinyXML;C:\Users\Mathias\Documents\GitHub\ModelConverter\ModelConverter\3dParty\FBX\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Mathias\Documents\GitHub\ModelConverter\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Devinition.cpp" />
+    <ClCompile Include="GlobalCameraSettings\GlobalCameraSettings.cpp" />
+    <ClCompile Include="GlobalLightSettings\GlobalLightSettings.cpp" />
+    <ClCompile Include="GlobalTimeSettings\GlobalTimeSettings.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModelElement.cpp" />
+    <ClCompile Include="ModelSDK.cpp" />
+    <ClCompile Include="SceneElements\CameraNode.cpp" />
+    <ClCompile Include="SceneElements\EmptyNode.cpp" />
+    <ClCompile Include="SceneElements\LightNode.cpp" />
+    <ClCompile Include="SceneElements\LODGroudNode.cpp" />
+    <ClCompile Include="SceneElements\MarkerNode.cpp" />
+    <ClCompile Include="SceneElements\MeshNode.cpp" />
+    <ClCompile Include="SceneElements\NurbNode.cpp" />
+    <ClCompile Include="SceneElements\PatchNode.cpp" />
+    <ClCompile Include="SceneElements\SkeletonNode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Definitions.h" />
+    <ClInclude Include="GlobalCameraSettings\GlobalCameraSettings.h" />
+    <ClInclude Include="GlobalLightSettings\GlobalLightSettings.h" />
+    <ClInclude Include="GlobalTimeSettings\GlobalTimeSettings.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="ModelElement.h" />
+    <ClInclude Include="ModelSDK.h" />
+    <ClInclude Include="IOHelper.h" />
+    <ClInclude Include="SceneElements\CameraNode.h" />
+    <ClInclude Include="SceneElements\EmptyNode.h" />
+    <ClInclude Include="SceneElements\LightNode.h" />
+    <ClInclude Include="SceneElements\LODGroudNode.h" />
+    <ClInclude Include="SceneElements\MarkerNode.h" />
+    <ClInclude Include="SceneElements\MeshNode.h" />
+    <ClInclude Include="SceneElements\NurbNode.h" />
+    <ClInclude Include="SceneElements\PatchNode.h" />
+    <ClInclude Include="SceneElements\SkeletonNode.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
