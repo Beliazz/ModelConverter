@@ -2,6 +2,18 @@
 
 #define cn "\""
 
+
+void CalcMinMax(Vector3 &min,Vector3 &max, Vector3 src)
+{
+	max.x = max(max.x,src.x);
+	max.y = max(max.y,src.y);
+	max.z = max(max.z,src.z);
+
+	min.x = min(min.x,src.x);
+	min.y = min(min.y,src.y);
+	min.z = min(min.z,src.z);
+}
+
 map<KFbxSurfaceMaterial*,vector<DWORD>> gMaterialMap;
 
 //Fills VB & IB from a FBX Mesh
@@ -71,6 +83,9 @@ bool CMeshNode::VLoad( KFbxNode* pNode, KFbxScene* pScene  )
 
 			bone.m_GlobalMatrix   =  g_GlobalMap[  skindata.GetBoneNode(i) ];
 			bone.m_BindPoseMatrix =  g_BindPosMap[ skindata.GetBoneNode(i) ];
+
+			bone.m_boundingMin = Vector3(99999.0f,99999.0f,99999.0f);
+			bone.m_boundingMax = Vector3(-99999.0f,-99999.0f,-99999.0f);
 
 			m_vecBones.push_back( bone );
 		}
@@ -176,10 +191,61 @@ bool CMeshNode::VLoad( KFbxNode* pNode, KFbxScene* pScene  )
 
 	gMaterialMap.clear();
 
-	for (unsigned int i = 0; i < m_MaterialConnection.m_vecMaterialGroups.size() ; i++)
+	for (unsigned int i = 0; i < m_VB->m_vecBoneIndices.size() ; i++)
 	{
-		m_MaterialConnection.m_vecMaterialGroups[i].CalculateAABB( m_VB );
+		UINT index = m_VB->m_vecBoneIndices[i].x;
+
+
+		if (m_VB->m_vecBoneWeights[i].x > 0.2f)
+		{
+			CalcMinMax(m_vecBones[index].m_boundingMin,m_vecBones[index].m_boundingMax,m_VB->m_vecPositions[i]);
+
+			m_vecBones[index].m_boundingBox.x = (m_vecBones[index].m_boundingMax.x - m_vecBones[index].m_boundingMin.x)/2.0f;
+			m_vecBones[index].m_boundingBox.y = (m_vecBones[index].m_boundingMax.y - m_vecBones[index].m_boundingMin.y)/2.0f;
+			m_vecBones[index].m_boundingBox.z = (m_vecBones[index].m_boundingMax.z - m_vecBones[index].m_boundingMin.z)/2.0f;
+		}
+
+
+		
+
+		index = m_VB->m_vecBoneIndices[i].y;
+
+		if (m_VB->m_vecBoneWeights[i].y > 0.2f)
+		{
+			CalcMinMax(m_vecBones[index].m_boundingMin,m_vecBones[index].m_boundingMax,m_VB->m_vecPositions[i]);
+
+			m_vecBones[index].m_boundingBox.x = (m_vecBones[index].m_boundingMax.x - m_vecBones[index].m_boundingMin.x)/2.0f;
+			m_vecBones[index].m_boundingBox.y = (m_vecBones[index].m_boundingMax.y - m_vecBones[index].m_boundingMin.y)/2.0f;
+			m_vecBones[index].m_boundingBox.z = (m_vecBones[index].m_boundingMax.z - m_vecBones[index].m_boundingMin.z)/2.0f;
+		}
+		
+
+		index = m_VB->m_vecBoneIndices[i].z;
+
+
+		if (m_VB->m_vecBoneWeights[i].z > 0.2f)
+		{
+			CalcMinMax(m_vecBones[index].m_boundingMin,m_vecBones[index].m_boundingMax,m_VB->m_vecPositions[i]);
+
+			m_vecBones[index].m_boundingBox.x = (m_vecBones[index].m_boundingMax.x - m_vecBones[index].m_boundingMin.x)/2.0f;
+			m_vecBones[index].m_boundingBox.y = (m_vecBones[index].m_boundingMax.y - m_vecBones[index].m_boundingMin.y)/2.0f;
+			m_vecBones[index].m_boundingBox.z = (m_vecBones[index].m_boundingMax.z - m_vecBones[index].m_boundingMin.z)/2.0f;
+		}
+
+
+		index = m_VB->m_vecBoneIndices[i].w;
+
+
+		if (m_VB->m_vecBoneWeights[i].w > 0.2f)
+		{
+			CalcMinMax(m_vecBones[index].m_boundingMin,m_vecBones[index].m_boundingMax,m_VB->m_vecPositions[i]);
+
+			m_vecBones[index].m_boundingBox.x = (m_vecBones[index].m_boundingMax.x - m_vecBones[index].m_boundingMin.x)/2.0f;
+			m_vecBones[index].m_boundingBox.y = (m_vecBones[index].m_boundingMax.y - m_vecBones[index].m_boundingMin.y)/2.0f;
+			m_vecBones[index].m_boundingBox.z = (m_vecBones[index].m_boundingMax.z - m_vecBones[index].m_boundingMin.z)/2.0f;
+		}
 	}
+
 
 	//Process Children
 	for(int i = 0; i < pNode->GetChildCount(); i++)

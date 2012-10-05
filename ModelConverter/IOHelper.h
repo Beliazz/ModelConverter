@@ -57,6 +57,11 @@ public:
 	{
 		write( (char*)&value, sizeof(float), 4 );
 	}
+	void write( Vector3 value )
+	{
+		write( (char*)&value, sizeof(float), 3 );
+	}
+
 	void write( KFbxMatrix matrix )
 	{
 		const DOUBLE* pDoubles = (const DOUBLE*)matrix.mData;
@@ -97,6 +102,10 @@ public:
 	void read( Color value )
 	{
 		read( (char*)&value, sizeof(float), 4 );
+	}
+	void read( Vector3 value )
+	{
+		read( (char*)&value, sizeof(float), 3 );
 	}
 
 	void write( string value, DWORD size)

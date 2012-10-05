@@ -164,6 +164,9 @@ struct sMeshBone
 	string	   m_sParentName;
 	KFbxMatrix m_GlobalMatrix;
 	KFbxMatrix m_BindPoseMatrix;
+	Vector3	   m_boundingBox;
+	Vector3	   m_boundingMin;
+	Vector3	   m_boundingMax;
 
 	TiXmlElement* xml()
 	{
@@ -173,13 +176,16 @@ struct sMeshBone
 
 		TiXmlElement* xmlGlobalMatrix	= new TiXmlElement( "GlobalMatrix" );
 		TiXmlElement* xmlBindPoseMatrix = new TiXmlElement( "BindPoseMatrix" );
+		TiXmlElement* xmlBoundingBox = new TiXmlElement( "BoundingBox" );
 
 		xmlGlobalMatrix->LinkEndChild(	 xmlText( m_GlobalMatrix ) );
 		xmlBindPoseMatrix->LinkEndChild( xmlText( m_BindPoseMatrix ) );
+		xmlBoundingBox->LinkEndChild( xmlText( m_boundingBox.str() ) );
 
 		xmlBone->LinkEndChild( xmlGlobalMatrix );
 		xmlBone->LinkEndChild( xmlBindPoseMatrix );
-		
+		xmlBone->LinkEndChild( xmlBoundingBox );
+
 		return xmlBone;
 	}
 	void  bin( IOHelper* pWriter )
@@ -189,6 +195,7 @@ struct sMeshBone
 
 		pWriter->write( m_GlobalMatrix );
 		pWriter->write( m_BindPoseMatrix );
+		pWriter->write( m_boundingBox );
 	}
 };
 
